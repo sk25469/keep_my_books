@@ -11,7 +11,7 @@ void main() async {
   bool hasLoggedIn = sharedPreferences.containsKey('isLoggedIn')
       ? sharedPreferences.getBool('isLoggedIn')!
       : false;
-  UserService.setInitialValues();
+  if (hasLoggedIn) UserService.setInitialValues();
   runApp(
     MyApp(hasLoggedIn: hasLoggedIn),
   );

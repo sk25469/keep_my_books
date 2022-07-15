@@ -13,11 +13,7 @@ class BookListTile extends StatelessWidget {
     return Card(
       elevation: 1,
       child: ListTile(
-        leading: const SizedBox(
-          width: 20,
-          height: 20,
-          child: Placeholder(),
-        ),
+        leading: const Icon(Icons.book_sharp),
         title: Text(book.name),
         subtitle: Text(book.author),
         trailing: Text(book.numAvailable.toString()),
