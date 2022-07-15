@@ -9,10 +9,17 @@ class UserService {
     scholarID = userScholarID;
   }
 
+  static setInitialValues() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    name = sharedPreferences.getString('name')!;
+    scholarID = sharedPreferences.getString('scholarID')!;
+  }
+
   void insertUserDetails() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('name', name);
     sharedPreferences.setString('scholarID', scholarID);
+    sharedPreferences.setBool('isLoggedIn', true);
 
     print('$name ---------> $scholarID');
   }

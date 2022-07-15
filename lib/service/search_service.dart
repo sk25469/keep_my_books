@@ -3,11 +3,11 @@ import 'package:library_sys/utils.dart';
 import 'package:library_sys/model/book.dart';
 
 class SearchService {
-  String _subjectName = '';
+  String _branchName = '';
   String _searchText = '';
 
   SearchService(String subjectName, String searchText) {
-    _subjectName = subjectName;
+    _branchName = subjectName;
     _searchText = searchText;
   }
 
@@ -17,12 +17,14 @@ class SearchService {
 
     for (var book in demoBooks) {
       if (wantText) {
-        if (branchToShortForm[book.subjectName] == _subjectName &&
-            book.name.contains(_searchText)) {
+        if (branchToShortForm[book.branchName] == _branchName &&
+            (book.name.contains(_searchText) ||
+                book.author.contains(_searchText) ||
+                book.subjectName.contains(_searchText))) {
           result.add(book);
         }
       } else {
-        if (branchToShortForm[book.subjectName] == _subjectName) {
+        if (branchToShortForm[book.branchName] == _branchName) {
           result.add(book);
         }
       }

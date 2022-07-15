@@ -7,12 +7,14 @@ class Book {
   final int numAvailable;
   final String location;
   final String subjectName;
+  final String branchName;
   Book({
     required this.name,
     required this.author,
     required this.numAvailable,
     required this.location,
     required this.subjectName,
+    required this.branchName,
   });
 
   Book copyWith({
@@ -21,6 +23,7 @@ class Book {
     int? numAvailable,
     String? location,
     String? subjectName,
+    String? branchName,
   }) {
     return Book(
       name: name ?? this.name,
@@ -28,6 +31,7 @@ class Book {
       numAvailable: numAvailable ?? this.numAvailable,
       location: location ?? this.location,
       subjectName: subjectName ?? this.subjectName,
+      branchName: branchName ?? this.branchName,
     );
   }
 
@@ -38,6 +42,7 @@ class Book {
       'numAvailable': numAvailable,
       'location': location,
       'subjectName': subjectName,
+      'branchName': branchName,
     };
   }
 
@@ -48,6 +53,7 @@ class Book {
       numAvailable: map['numAvailable'] as int,
       location: map['location'] as String,
       subjectName: map['subjectName'] as String,
+      branchName: map['branchName'] as String,
     );
   }
 
@@ -58,19 +64,19 @@ class Book {
 
   @override
   String toString() {
-    return 'Book(name: $name, author: $author, numAvailable: $numAvailable, location: $location, subjectName: $subjectName)';
+    return 'Book(name: $name, author: $author, numAvailable: $numAvailable, location: $location, subjectName: $subjectName, branchName: $branchName)';
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant Book other) {
     if (identical(this, other)) return true;
 
-    return other is Book &&
-        other.name == name &&
+    return other.name == name &&
         other.author == author &&
         other.numAvailable == numAvailable &&
         other.location == location &&
-        other.subjectName == subjectName;
+        other.subjectName == subjectName &&
+        other.branchName == branchName;
   }
 
   @override
@@ -79,6 +85,7 @@ class Book {
         author.hashCode ^
         numAvailable.hashCode ^
         location.hashCode ^
-        subjectName.hashCode;
+        subjectName.hashCode ^
+        branchName.hashCode;
   }
 }

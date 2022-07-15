@@ -73,18 +73,24 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              widget.book.author,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                widget.book.author,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                            const Spacer(),
-                            Text(
-                              widget.book.subjectName,
-                              style: const TextStyle(
-                                fontSize: 16,
+                            // const Spacer(),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                widget.book.subjectName,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ),
                               ),
                             ),
                           ],

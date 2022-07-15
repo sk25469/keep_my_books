@@ -168,43 +168,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Table(
-                    border: TableBorder.all(
-                      width: 1,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    columnWidths: const <int, TableColumnWidth>{
-                      0: FlexColumnWidth(100),
-                      1: FlexColumnWidth(60),
-                      2: FlexColumnWidth(50),
-                    },
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    children: <TableRow>[
-                      const TableRow(
-                        children: <Widget>[
-                          TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.middle,
-                            child: SizedBox(
-                              height: 30,
-                              child: Center(child: Text('Book Name')),
-                            ),
+              : numIssuedBooks == 0
+                  ? const Padding(
+                      padding: EdgeInsets.only(top: 150.0),
+                      child: Center(
+                        child: Text(
+                          'No books issued',
+                          style: TextStyle(
+                            fontSize: 20,
                           ),
-                          TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.middle,
-                            child: Center(child: Text('Subject')),
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Table(
+                        border: TableBorder.all(
+                          width: 1,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        columnWidths: const <int, TableColumnWidth>{
+                          0: FlexColumnWidth(100),
+                          1: FlexColumnWidth(60),
+                          2: FlexColumnWidth(50),
+                        },
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        children: <TableRow>[
+                          const TableRow(
+                            children: <Widget>[
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: SizedBox(
+                                  height: 30,
+                                  child: Center(child: Text('Book Name')),
+                                ),
+                              ),
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Center(child: Text('Subject')),
+                              ),
+                              TableCell(
+                                verticalAlignment: TableCellVerticalAlignment.middle,
+                                child: Center(child: Text('Date Issued')),
+                              ),
+                            ],
                           ),
-                          TableCell(
-                            verticalAlignment: TableCellVerticalAlignment.middle,
-                            child: Center(child: Text('Date Issued')),
-                          ),
+                          ...createTableRow(),
                         ],
                       ),
-                      ...createTableRow(),
-                    ],
-                  ),
-                ),
+                    ),
         ],
       ),
     );

@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:library_sys/screen/login_screen.dart';
+import 'package:library_sys/service/user_service.dart';
+import 'package:library_sys/widget/bottom_nav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
+
+  bool hasLoggedIn = sharedPreferences.containsKey('isLoggedIn')
+      ? sharedPreferences.getBool('isLoggedIn')!
+      : false;
+  UserService.setInitialValues();
+  runApp(
+    MyApp(hasLoggedIn: hasLoggedIn),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool hasLoggedIn;
+  const MyApp({Key? key, required this.hasLoggedIn}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: !hasLoggedIn ? const LoginScreen() : const BottomNavigationScreen(),
     );
   }
 }
