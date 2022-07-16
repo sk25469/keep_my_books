@@ -116,7 +116,9 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                             child: Center(
                               child: FittedBox(
                                 child: Text(
-                                  widget.book.numAvailable.toString(),
+                                  !isIssued
+                                      ? widget.book.numAvailable.toString()
+                                      : (widget.book.numAvailable - 1).toString(),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 30,
@@ -124,6 +126,9 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                                 ),
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 4,
                           ),
                           const Text(
                             'Available',
@@ -164,8 +169,11 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 4,
+                          ),
                           const Text(
-                            'Available',
+                            'Location',
                             style: TextStyle(fontSize: 18),
                           ),
                         ],
@@ -210,8 +218,55 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                           });
                         },
                 ),
+                showLegend(widget.book.location[0], 'represents the floor no.'),
+                const SizedBox(
+                  height: 8,
+                ),
+                showLegend(widget.book.location[1], 'represents the shelf name'),
+                const SizedBox(
+                  height: 8,
+                ),
+                showLegend(widget.book.location[2], 'represents the shelf level'),
               ],
             ),
     );
   }
+}
+
+Widget showLegend(String value, String instruction) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(80),
+            color: Colors.blueAccent,
+          ),
+          child: Center(
+            child: FittedBox(
+              child: Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          instruction,
+          style: const TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ],
+    ),
+  );
 }

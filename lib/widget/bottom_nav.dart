@@ -50,17 +50,19 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.search),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SearchScreen(),
-            ),
-          );
-        },
-      ),
+      floatingActionButton: _selectedPageIndex == 0
+          ? FloatingActionButton(
+              child: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SearchScreen(),
+                  ),
+                );
+              },
+            )
+          : null,
       bottomNavigationBar: TitledBottomNavigationBar(
         key: globalKey,
         onTap: _selectPage,
