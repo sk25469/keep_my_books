@@ -16,7 +16,35 @@ class BookListTile extends StatelessWidget {
         leading: const Icon(Icons.book_sharp),
         title: Text(book.name),
         subtitle: Text(book.author),
-        trailing: Text(book.numAvailable.toString()),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                color: Colors.blueAccent,
+              ),
+              child: Center(
+                child: FittedBox(
+                  child: Text(
+                    book.numAvailable.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Spacer(),
+            const Text(
+              'Available',
+              style: TextStyle(fontSize: 10),
+            ),
+          ],
+        ),
       ),
     );
   }
